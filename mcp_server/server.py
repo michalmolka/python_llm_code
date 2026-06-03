@@ -8,7 +8,7 @@ from mcp.server.fastmcp import FastMCP
 
 print("MCP has started.")
 PROJECT_DIR = Path(__file__).resolve().parent
-DATA_DIR = PROJECT_DIR / "data"
+DATA_DIR = PROJECT_DIR / "data" / "iowa_parquet"
 STORAGE_DIR = PROJECT_DIR / "storage" / "azure-well-architected-ai-local"
 MODELS_DIR = PROJECT_DIR / "models"
 EMBEDDING_MODEL_DIR = (
