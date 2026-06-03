@@ -118,6 +118,218 @@ iowa_sales.VendorID = iowa_vendor.VendorID
 - iowa_vendor
 
 
+# Tables Description
+
+## iowa_sales
+**PL:** Główna tabela faktów ze sprzedażą. Każdy wiersz reprezentuje pojedynczą pozycję sprzedaży produktu w konkretnym sklepie i dniu, razem z ilościami, wartościami i wolumenem.
+
+**EN:** Main fact table containing sales transactions. Each row represents a sold item in a specific store and date, including quantities, values, and volumes.
+
+## iowa_category
+**PL:** Tabela kategorii, grupuje produkty według typu lub przeznaczenia.
+
+**EN:** Category dimension table grouping products by type or purpose.
+
+## iowa_date
+**PL:** Tabela wymiaru daty, zawiera różne reprezentacje i atrybuty kalendarzowe i fiskalne dla każdej daty.
+
+**EN:** Date dimension table containing calendar and fiscal attributes for each date.
+
+## iowa_item
+**PL:** Tabela produktów, przechowuje listę wszystkich artykułów dostępnych w sprzedaży.
+
+**EN:** Item dimension table storing the list of all products available for sale.
+
+## iowa_store
+**PL:** Tabela sklepów, opisuje lokalizacje, nazwy i dane adresowe punktów sprzedaży.
+
+**EN:** Store dimension table describing store locations, names, and address details.
+
+## iowa_vendor
+**PL:** Tabela dostawców, przechowuje informacje o firmach dostarczających produkty.
+
+**EN:** Vendor dimension table storing information about product suppliers.
+
+# Columns Description
+
+## Table: iowa_sales
+
+### ID
+- Data type: bigint
+- PL: Unikalny identyfikator rekordu sprzedaży, techniczny klucz wiersza.
+- EN: Unique identifier of the sales record, technical row key.
+
+### InvoiceItemNumber
+- Data type: string
+- PL: Numer pozycji na fakturze, wskazuje konkretną linię dokumentu sprzedaży.
+- EN: Invoice line item number identifying a specific sales line.
+
+### DateID
+- Data type: int
+- PL: Klucz do tabeli dat, określa dzień sprzedaży.
+- EN: Foreign key to date table, indicates the sales date.
+
+### StoreID
+- Data type: int
+- PL: Klucz sklepu, mówi gdzie dokonano sprzedaży.
+- EN: Store foreign key, indicates where the sale happened.
+
+### CategoryID
+- Data type: int
+- PL: Klucz kategorii produktu, określa typ towaru.
+- EN: Product category foreign key, identifies product type.
+
+### VendorID
+- Data type: int
+- PL: Klucz dostawcy, wskazuje firmę dostarczającą produkt.
+- EN: Vendor foreign key, identifies the supplier.
+
+### ItemID
+- Data type: int
+- PL: Klucz produktu, identyfikuje konkretny artykuł.
+- EN: Item foreign key, identifies the specific product.
+
+### Pack
+- Data type: int
+- PL: Wielkość opakowania, liczba sztuk w paczce.
+- EN: Pack size, number of units in a package.
+
+### BottleVolumeMl
+- Data type: int
+- PL: Pojemność butelki w mililitrach.
+- EN: Bottle volume in milliliters.
+
+### StateBottleCost
+- Data type: double
+- PL: Koszt zakupu jednej butelki dla sklepu (cena hurtowa).
+- EN: Wholesale cost of a single bottle.
+
+### StateBottleRetail
+- Data type: double
+- PL: Cena detaliczna jednej butelki.
+- EN: Retail price of a single bottle.
+
+### BottlesSold
+- Data type: int
+- PL: Liczba sprzedanych butelek w tej pozycji sprzedaży.
+- EN: Number of bottles sold in this transaction line.
+
+### SaleDollars
+- Data type: double
+- PL: Wartość sprzedaży w dolarach.
+- EN: Sales value in dollars.
+
+### VolumeSoldLiters
+- Data type: double
+- PL: Łączna sprzedana objętość w litrach.
+- EN: Total sold volume in liters.
+
+### VolumeSoldGallons
+- Data type: double
+- PL: Łączna sprzedana objętość w galonach.
+- EN: Total sold volume in gallons.
+
+### PartitionKeyYear
+- Data type: int
+- PL: Rok używany do partycjonowania danych w magazynie.
+- EN: Year used for data partitioning in storage.
+
+### Inserted
+- Data type: timestamp
+- PL: Data i czas wstawienia rekordu do systemu.
+- EN: Timestamp when the record was inserted into the system.
+
+## Table: iowa_category
+
+### CategoryID
+- Data type: bigint
+- PL: Unikalny identyfikator kategorii.
+- EN: Unique category identifier.
+
+### CategoryName
+- Data type: string
+- PL: Nazwa kategorii.
+- EN: Category name.
+
+## Table: iowa_date
+
+### DateID
+- Data type: int
+- PL: Unikalny identyfikator daty, klucz do łączenia z faktami.
+- EN: Unique date identifier, join key to fact tables.
+
+### CalendarDate
+- Data type: date
+- PL: Pełna data kalendarzowa.
+- EN: Full calendar date.
+
+### CalendarYear
+- Data type: int
+- PL: Rok kalendarzowy.
+- EN: Calendar year.
+
+### CalendarMonth
+- Data type: string
+- PL: Nazwa miesiąca.
+- EN: Month name.
+
+### MonthOfYear
+- Data type: int
+- PL: Numer miesiąca w roku (1–12).
+- EN: Month number in year (1–12).
+
+## Table: iowa_item
+
+### ItemID
+- Data type: bigint
+- PL: Unikalny identyfikator produktu.
+- EN: Unique product identifier.
+
+### ItemName
+- Data type: string
+- PL: Nazwa produktu.
+- EN: Product name.
+
+### Inserted
+- Data type: timestamp
+- PL: Data dodania produktu do systemu.
+- EN: Timestamp when the product was added to the system.
+
+## Table: iowa_store
+
+### StoreID
+- Data type: bigint
+- PL: Unikalny identyfikator sklepu.
+- EN: Unique store identifier.
+
+### StoreName
+- Data type: string
+- PL: Nazwa sklepu.
+- EN: Store name.
+
+### City
+- Data type: string
+- PL: Miasto, w którym znajduje się sklep.
+- EN: City where the store is located.
+
+### County
+- Data type: string
+- PL: Region / hrabstwo administracyjne.
+- EN: Administrative county or region.
+
+## Table: iowa_vendor
+
+### VendorID
+- Data type: bigint
+- PL: Unikalny identyfikator dostawcy.
+- EN: Unique vendor identifier.
+
+### VendorName
+- Data type: string
+- PL: Nazwa dostawcy.
+- EN: Vendor name.
+
+
 # Iowa Sales Data Documentation for RAG
 
 ## Document purpose
