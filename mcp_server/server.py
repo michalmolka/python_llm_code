@@ -6,8 +6,6 @@ from typing import Literal
 
 import pandas as pd
 from mcp.server.fastmcp import FastMCP
-
-print("MCP server starting.", file=sys.stderr)
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data" / "iowa_parquet"
 STORAGE_DIR = PROJECT_DIR / "data" / "storage" / "azure-well-architected-ai-local"
@@ -130,4 +128,5 @@ def ai_well_architected_framework(q: str) -> dict:
 
 
 if __name__ == "__main__":
+    print("MCP server is running.", file=sys.stderr)
     mcp.run()
