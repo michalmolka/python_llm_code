@@ -1,16 +1,18 @@
 import json
 import os
+import sys
 from pathlib import Path
 from typing import Literal
 
 import pandas as pd
 from mcp.server.fastmcp import FastMCP
 
-print("MCP has started.")
+print("MCP server starting.", file=sys.stderr)
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data" / "iowa_parquet"
-STORAGE_DIR = PROJECT_DIR / "storage" / "azure-well-architected-ai-local"
+STORAGE_DIR = PROJECT_DIR / "data" / "storage" / "azure-well-architected-ai-local"
 MODELS_DIR = PROJECT_DIR / "models"
+LM_STUDIO_MODEL = os.environ.get("LM_STUDIO_MODEL", "openai/gpt-oss-20b")
 EMBEDDING_MODEL_DIR = (
     MODELS_DIR
     / "models--BAAI--bge-small-en-v1.5"
@@ -78,7 +80,7 @@ def ask_pdf_with_sources(question: str, top_k: int = 5) -> dict:
     )
 
     Settings.llm = OpenAILike(
-        model="gpt-oss-20b",
+        model=LM_STUDIO_MODEL,
         api_base="http://localhost:1234/v1",
         api_key="lm-studio",
         is_chat_model=True,

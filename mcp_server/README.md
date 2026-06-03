@@ -16,7 +16,8 @@ prepare_index_llama.ipynb
 Then start the MCP server:
 
 ```bash
-.venv/bin/python server.py
+cd /Users/michalmolka/Downloads/python_llm_code
+.venv/bin/python mcp_server/server.py
 ```
 
 The server communicates over stdio and is ready to be used as a local MCP server.
@@ -27,9 +28,9 @@ The server communicates over stdio and is ready to be used as a local MCP server
 {
   "mcpServers": {
     "iowa-ai-architecture": {
-      "command": "/Users/michalmolka/Downloads/mcp/.venv/bin/python",
+      "command": "/Users/michalmolka/Downloads/python_llm_code/.venv/bin/python",
       "args": [
-        "/Users/michalmolka/Downloads/mcp/server.py"
+        "/Users/michalmolka/Downloads/python_llm_code/mcp_server/server.py"
       ]
     }
   }
@@ -42,5 +43,13 @@ The `ai_well_architected_framework` tool requires a locally running OpenAI-compa
 
 ```text
 http://localhost:1234/v1
-model: gpt-oss-20b
+model: openai/gpt-oss-20b
+```
+
+You can override the model name passed to LM Studio:
+
+```json
+"env": {
+  "LM_STUDIO_MODEL": "openai/gpt-oss-20b"
+}
 ```
