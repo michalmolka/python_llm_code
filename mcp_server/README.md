@@ -16,7 +16,7 @@ prepare_index_llama.ipynb
 Then start the MCP server:
 
 ```bash
-cd /Users/michalmolka/Downloads/python_llm_code
+cd /path/to/python_llm_code
 .venv/bin/python mcp_server/server.py
 ```
 
@@ -28,9 +28,9 @@ The server communicates over stdio and is ready to be used as a local MCP server
 {
   "mcpServers": {
     "iowa-ai-architecture": {
-      "command": "/Users/michalmolka/Downloads/python_llm_code/.venv/bin/python",
+      "command": "/path/to/python_llm_code/.venv/bin/python",
       "args": [
-        "/Users/michalmolka/Downloads/python_llm_code/mcp_server/server.py"
+        "/path/to/python_llm_code/mcp_server/server.py"
       ]
     }
   }

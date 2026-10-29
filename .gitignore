@@ -1,5 +1,9 @@
 .venv/
 .DS_Store
+**/.DS_Store
+__pycache__/
+**/__pycache__/
+*.pyc
 models/
 fine-tuning/Qwen3-8B-MLX-bf16
 fine-tuning/Qwen3-8B-MLX-bf16-iowa-lora-v1
